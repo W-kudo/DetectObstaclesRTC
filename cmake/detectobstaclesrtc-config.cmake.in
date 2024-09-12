@@ -1,0 +1,54 @@
+# DetectObstaclesRTC CMake config file
+#
+# This file sets the following variables:
+# DetectObstaclesRTC_FOUND - Always TRUE.
+# DetectObstaclesRTC_INCLUDE_DIRS - Directories containing the DetectObstaclesRTC include files.
+# DetectObstaclesRTC_IDL_DIRS - Directories containing the DetectObstaclesRTC IDL files.
+# DetectObstaclesRTC_LIBRARIES - Libraries needed to use DetectObstaclesRTC.
+# DetectObstaclesRTC_DEFINITIONS - Compiler flags for DetectObstaclesRTC.
+# DetectObstaclesRTC_VERSION - The version of DetectObstaclesRTC found.
+# DetectObstaclesRTC_VERSION_MAJOR - The major version of DetectObstaclesRTC found.
+# DetectObstaclesRTC_VERSION_MINOR - The minor version of DetectObstaclesRTC found.
+# DetectObstaclesRTC_VERSION_REVISION - The revision version of DetectObstaclesRTC found.
+# DetectObstaclesRTC_VERSION_CANDIDATE - The candidate version of DetectObstaclesRTC found.
+
+message(STATUS "Found DetectObstaclesRTC-@PROJECT_VERSION@")
+set(DetectObstaclesRTC_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(DetectObstaclesRTC_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(DetectObstaclesRTC_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(DetectObstaclesRTC_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(DetectObstaclesRTC_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(DetectObstaclesRTC_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(DetectObstaclesRTC_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(DetectObstaclesRTC_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(DetectObstaclesRTC_VERSION @PROJECT_VERSION@)
+set(DetectObstaclesRTC_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(DetectObstaclesRTC_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(DetectObstaclesRTC_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(DetectObstaclesRTC_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+
